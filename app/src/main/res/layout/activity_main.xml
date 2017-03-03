@@ -11,26 +11,32 @@
     tools:context="com.ika.speechtotext.MainActivity">
 
 
+    <ImageButton
+        android:src="@drawable/ic_mic_white_24dp"
+        android:id="@+id/imageRecBtn"
+        android:background="@drawable/round_button"
+        android:onClick="onBtnClick"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="8dp"
+        android:padding="12dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:hapticFeedbackEnabled="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/myText"
         android:onClick="onTextClick"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textAlignment="center"
         android:text="Welcome! Press MIC to start recording!"
+        android:layout_marginTop="23dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
-
-    <ImageButton
-        android:src="@drawable/micicon"
-        android:id="@+id/imageRecBtn"
-        android:onClick="onBtnClick"
-        android:layout_marginBottom="21dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
