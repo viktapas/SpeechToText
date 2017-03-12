@@ -33,6 +33,7 @@
         android:id="@+id/myText"
         android:onClick="onTextClick"
         android:textSize="18sp"
+        android:textColor="@color/primary_text_material_light"
         android:textAlignment="center"
         android:text="Welcome! Press MIC to start recording!"
         android:layout_marginTop="23dp"

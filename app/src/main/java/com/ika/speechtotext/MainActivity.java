@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.speech.RecognizerIntent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -17,7 +18,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity{
 
-    private static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
+    private static final int REQUEST_CODE_RECORD_AUDIO = 1;
     private TextView text;
 
     @Override
@@ -32,36 +33,30 @@ public class MainActivity extends AppCompatActivity{
 
         if (view.getId() == R.id.imageRecBtn) {
 
-            // Here, 'this' is the current activity i.e; MainActivity
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.READ_CONTACTS)
-                    != PackageManager.PERMISSION_GRANTED) {
+            //New code lines BEGIN***************************************************************************************************
 
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.RECORD_AUDIO)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                    // Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-
-                } else {
-
-                    // No explanation needed, we can request the permission.
-
+                //checking the permission status
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) !=
+                        PackageManager.PERMISSION_GRANTED) {
+                    //request the permission
                     ActivityCompat.requestPermissions(this,
                             new String[]{Manifest.permission.RECORD_AUDIO},
-                            MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
+                            REQUEST_CODE_RECORD_AUDIO);
+                    }
 
-                    // MY_PERMISSIONS_REQUEST_RECORD_AUDIO is an
-                    // app-defined int constant. The callback method gets the
-                    // result of the request.
+                else {
+                    promptSpeechInput();
                 }
             }
-
-            promptSpeechInput();
         }
+
     }
+            //New code lines END***************************************************************************************************
+
+
+
 
     //recognize the speech
     public void promptSpeechInput() {
